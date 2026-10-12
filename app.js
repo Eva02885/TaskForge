@@ -229,9 +229,14 @@ function makeButton(label, action, id, className) {
 
 function renderTasks() {
     ensureExtraUI();
+
     const filtered = getFilteredTasks();
 
-    const totalPages = Math.max( 1, Math.ceil(filtered.length / PAGE_SIZE));
+    const totalPages = Math.max(
+        1,
+        Math.ceil(filtered.length / PAGE_SIZE)
+    );
+
     currentPage = Math.min(currentPage, totalPages);
 
     const start = (currentPage - 1) * PAGE_SIZE;
@@ -244,7 +249,9 @@ function renderTasks() {
 
     visibleTasks.forEach(task => {
         const card = document.createElement("article");
-        card.className ="task-card rounded-xl border border-slate-200 bg-white p-5 shadow-sm";
+
+        card.className =
+            "task-card rounded-xl border border-slate-200 bg-white p-5 shadow-sm";
         card.dataset.id = task.id;
         card.draggable = true;
 
@@ -257,7 +264,10 @@ function renderTasks() {
         complete.dataset.action = "complete";
         complete.dataset.id = task.id;
         complete.className = "mt-1 h-4 w-4 shrink-0";
-        complete.setAttribute( "aria-label", `Mark ${task.title} completed` );
+        complete.setAttribute(
+            "aria-label",
+            `Mark ${task.title} completed`
+        );
 
         const content = document.createElement("div");
         content.className = "min-w-0 flex-1";
@@ -892,8 +902,7 @@ function setDarkMode(enabled) {
 
 setDarkMode(localStorage.getItem(DARK_KEY) === "true");
 $("#dark-mode-toggle")?.addEventListener("click", () => {
-    const enabled =
-        !document.documentElement.classList.contains("dark");
+    const enabled =!document.documentElement.classList.contains("dark");
     setDarkMode(enabled);
 });
 
@@ -909,9 +918,9 @@ $("#export-tasks")?.addEventListener("click", () => {
     const link = document.createElement("a");
 
     link.href = url;
-    link.download = "taskforge-t            ) {
-                closeDetailsModal();
-           asks.json";
+    link.download = "taskforge-tasks.json";
+    closeDetailsModal();
+
 
     document.body.append(link);
     link.click();
